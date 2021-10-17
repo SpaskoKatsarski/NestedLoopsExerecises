@@ -1,31 +1,47 @@
 ﻿using System;
 
-namespace SumPrimeNonPrime
+namespace _03._Sum_Prime_Non_Prime
 {
     class Program
     {
         static void Main(string[] args)
         {
-            int num1 = int.Parse(Console.ReadLine());
-            int num2 = int.Parse(Console.ReadLine());
+            string command = Console.ReadLine();
 
-            for (int i = num1; i <= num2; i++)
+            int sumOfAllPrimeNums = 0;
+            int sumOfAllNonPrimeNums = 0;
+
+            while (command != "stop")
             {
-                double sixthDigit = i % 10;
-                double fifthDigit = i % 100;
-                double fourthDigit = i % 1000;
-                double thirdDigit = i % 10000;
-                double secondDigit = i % 100000;
-                double firstDigit = i % 1000000;
+                int number = int.Parse(command);
 
-                double evenSum = sixthDigit + fourthDigit + secondDigit;
-                double oddSum = fifthDigit + thirdDigit + firstDigit;
-
-                if (evenSum == oddSum)
+                if (number < 0)
                 {
-                    Console.Write($"{i} ");
+                    Console.WriteLine("Number is negative.");
                 }
+                else
+                {
+                    int counter = 0;
+
+                    for (int i = 1; i <= number; i++)
+                    {
+                        if (number % i == 0)
+                        {
+                            counter++;
+                        }                    
+                    }
+                    if (counter == 2)
+                    {
+                        sumOfAllPrimeNums += number;
+                    }
+                    else
+                    {
+                        sumOfAllNonPrimeNums += number;
+                    }
+                }
+                command = Console.ReadLine();
             }
+            Console.WriteLine($"Sum of all prime numbers is: {sumOfAllPrimeNums}\nSum of all non prime numbers is: {sumOfAllNonPrimeNums}");
         }
     }
 }
